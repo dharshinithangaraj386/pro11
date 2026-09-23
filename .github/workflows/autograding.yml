@@ -1,0 +1,44 @@
+name: UUID Mount Autograding
+
+
+on:
+
+  push:
+  pull_request:
+
+
+jobs:
+
+  grade:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+
+    - name: Checkout Repository
+
+      uses: actions/checkout@v4
+
+
+
+    - name: Install BATS Testing Framework
+
+      run: |
+
+        sudo apt update
+
+        sudo apt install -y bats
+
+
+
+    - name: Give Permission
+
+      run: chmod +x mount_uuid.sh
+
+
+
+    - name: Run Automated Tests
+
+      run: bats tests/test_mount_uuid.bats
